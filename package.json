@@ -14,10 +14,11 @@
     "chai": "^1.9.1",
     "mocha": "^1.21.4",
     "sinon": "^1.10.3",
-    "testem": "^0.6.18"
+    "testem": "^0.6.18",
+    "sinon-chai": "^2.5.0"
   },
   "dependencies": {
     "datastore": "^1.0.6",
-      "store-model": "*"
+    "store-model": "*"
   }
 }
