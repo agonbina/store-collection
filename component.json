@@ -10,6 +10,7 @@
   "repo": "git@github.com:agonbina/store-collection",
   "dependencies": {
     "bredele/datastore": "^1.0.6",
-    "component/assert": "~0.4.0"
+    "component/assert": "~0.4.0",
+    "agonbina/store-model": "~0.1.0"
   }
 }
