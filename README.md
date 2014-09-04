@@ -10,6 +10,7 @@ A Collection interface on top of [datastore](https://github.com/bredele/datastor
 
 # Example:
 
+**With [Model](https://github.com/agonbina/store-model)**
 ```
 var Model       = require('store-model');
 var Collection  = require('store-collection');
@@ -40,4 +41,22 @@ var you = User.create({ id: 'yourUsername' })
 myFriends.add(you);
 
 ```
+
+You can also create just a regular Collection
+```
+var Users = new Collection(User);
+var users = Users.create([
+    User.create({ id: 'agonbina' }),
+    User.create({ id: 'gonigkum' })
+]); // Here User is a Model
+
+users.each(function(user) {
+    console.log(user.get('id');
+}); // 'agonbina', 'gonigkum'
+
+```
+
+## TODO:
+- Add full documentation about what is all available
+
 
