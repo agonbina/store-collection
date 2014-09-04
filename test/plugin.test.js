@@ -1,7 +1,8 @@
 describe('store-collection plugin', function () {
 
+    var myModel = new Store({ name: 'myModel' });
     var collection = new Store([
-        new Store({ name: 'myModel' }),
+        myModel,
         new Store({ name: 'otherModel' })
     ]);
 
@@ -35,14 +36,21 @@ describe('store-collection plugin', function () {
 
         expect(getNames()).to.have.length(2);
         expect(getNames()).to.include.members(['myModel', 'otherModel']);
+
+        expect(collection.indexOf(myModel)).to.equal(0);
     });
 
-    describe('.add method of the store instance', function () {
+    describe('.add', function () {
 
         var newUser = new Store({ name: 'Agon' });
 
         before(function () {
+            collection = new Store([]);
             collection.use(storePlugin);
+        });
+
+        beforeEach(function () {
+            collection.reset([]);
         });
 
         it('should exist', function () {
@@ -50,13 +58,19 @@ describe('store-collection plugin', function () {
         });
 
         it('should throw if a Store instance is not passed as argument', function () {
-            function addItem() {
+            expect(function addItem() {
                 collection.add();
-            }
-
-            expect(addItem).to.throw(Error);
+            }).to.throw(Error);
         });
 
+        it('should throw if trying to add the same instance again', function () {
+            var duplicate = new Store({ name: 'duplicate' });
+            collection.add(duplicate)
+
+            expect(function () {
+                collection.add(duplicate);
+            }).to.throw(/This item is already in the collection/);
+        });
 
         it('should emit an "add" event', function () {
             var itemAdded = sinon.spy();
@@ -75,6 +89,56 @@ describe('store-collection plugin', function () {
 
             expect(collection.length()).to.equal(prevLength + 1);
             expect(collection.has(newUser)).to.be.true;
+        });
+
+    });
+
+    describe('.remove and .removeWhere', function () {
+
+        var cat = new Store({ name: 'cat', type: 'animal' });
+        var me = new Store({ name: 'Agon', type: 'human' });
+        var dog = new Store({ name: 'dog', type: 'animal' });
+        var users = null;
+
+        beforeEach(function () {
+            users = new Store([cat, me, dog]).use(storePlugin);
+        });
+
+        it('should exist', function () {
+            expect(collection).to.respondTo('remove');
+            expect(collection).to.respondTo('removeWhere');
+        });
+
+        it('should remove a Store instance from the collection', function () {
+            expect(users.has(me)).to.be.true;
+
+            users.remove(me);
+            expect(users.has(me)).to.be.false;
+        });
+
+        it('should emit a "removed" event', function () {
+            var onRemoved = sinon.spy();
+
+            users.on('removed', onRemoved);
+            users.remove(me);
+
+            expect(onRemoved).to.have.been.calledOnce;
+            expect(onRemoved).to.have.been.calledWith(me);
+        });
+
+        it('should remove all instances found by the specified query', function () {
+            var onRemoved = sinon.spy();
+
+            users.on('removed', onRemoved);
+            users.removeWhere({ type: 'animal' });
+
+            expect(onRemoved).to.have.been.calledTwice;
+            expect(onRemoved).to.have.been.calledWith(cat);
+            expect(onRemoved).to.have.been.calledWith(dog);
+
+            expect(users.length()).to.equal(1);
+            expect(users.has(cat)).to.be.false;
+            expect(users.has(dog)).to.be.false;
         });
 
     });

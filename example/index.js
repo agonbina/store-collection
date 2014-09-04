@@ -18,15 +18,19 @@ var schema = {
 var User = new Model(schema, { url: '/users' });
 var Users = new Collection(User);
 
-var users = Users.create([
-    User.create({ id: 'agonbina' }),
-    User.create({ id: 'gonigkum' })
-]);
+var agon = User.create({ id: 'agonbina' }),
+    goni = User.create({ id: 'gonigkum' });
+
+var users = Users.create([agon, goni]);
 
 console.log(users.map(function (user) {
     return user.get('id');
 }).value());
 
-users.each(function(user) {
-    console.log(user.get('id'));
+var me = User.create({ id: 'userToRemove' });
+users.add(me);
+
+users.remove(me).remove(agon);
+users.each(function(user, i) {
+    console.log(i + ': ' + user.get('id'));
 });

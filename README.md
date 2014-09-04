@@ -70,7 +70,7 @@ users.on('add', function(user) {
 });
 ```
 
-### instance.remove(obj:Store|obj:Mixed)
+### instance.remove(obj:Store)
 Remove an item from the collection.
 
 ```obj``` can be a Store instance or a query filter. 
@@ -78,9 +78,10 @@ Remove an item from the collection.
 var me = User.create({ id: 'agonbina' });
 users.remove(me);
 
-OR 
-
-users.remove({ id: 'agonbina' }); // Remove all users with id: 'agonbina'
+## instance.removeWhere(query:Mixed)
+Remove all items matching the query object.
+```
+users.removeWhere({ id: 'agonbina' }); // Remove all users with id: 'agonbina'
 ```
 
 ### instance.length()
