@@ -4,7 +4,8 @@
   "description": "A Collection interface on top of [datastore](https://github.com/bredele/datastore/).",
   "scripts": [
     "index.js",
-    "lib/collection.js"
+    "lib/collection.js",
+    "lib/plugin.js"
   ],
   "main": "index.js",
   "repo": "git@github.com:agonbina/store-collection",
