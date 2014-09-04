@@ -4,6 +4,7 @@ if (typeof process !== 'undefined' && process.title === 'node') {
     expect = require('chai').expect;
     sinon = require('sinon');
 
+    Model = require('store-model');
     Collection = require('..');
 
     isBrowser = false;
