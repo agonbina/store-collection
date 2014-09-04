@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "datastore": "^1.0.6",
-    "store-model": "*"
+    "store-model": "*",
+    "enumerable-component": "^0.3.1"
   }
 }

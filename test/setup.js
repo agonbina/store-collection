@@ -12,6 +12,8 @@ if (typeof process !== 'undefined' && process.title === 'node') {
     Model = require('store-model');
     Collection = require('..');
 
+    storePlugin = require('../lib/plugin');
+
     isBrowser = false;
 } else {
     // We are in the browser. Set up variables like above using served js files.

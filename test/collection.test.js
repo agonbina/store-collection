@@ -55,6 +55,7 @@ describe('Collection', function () {
             var users = Users.create([ agon ]);
 
             expect(users).to.be.instanceof(Store);
+            expect(users.get(0)).to.equal(agon);
         });
 
     });
