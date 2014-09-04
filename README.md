@@ -1,8 +1,8 @@
-store-{{pluginName}}
-===========
+[ ![Codeship Status for agonbina/store-collection](https://www.codeship.io/projects/673b51d0-15fa-0132-aeec-4a49cf4e7c40/status)](https://www.codeship.io/projects/33781)
 
-A [datastore](https://github.com/bredele/datastore/) plugin to {{ say what it does here }}
+# store-collection
 
-Example:
-===========
+A Collection interface on top of [datastore](https://github.com/bredele/datastore/).
+
+# Example:
 
