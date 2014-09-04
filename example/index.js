@@ -14,7 +14,11 @@ var schema = {
     }
 };
 
-// Create a new Model type
+
+/**
+ * Creating a new Collection type
+ */
+
 var User = new Model(schema, { url: '/users' });
 var Users = new Collection(User);
 
@@ -23,14 +27,15 @@ var agon = User.create({ id: 'agonbina' }),
 
 var users = Users.create([agon, goni]);
 
-console.log(users.map(function (user) {
-    return user.get('id');
-}).value());
+/**
+ * Removing an item
+ */
 
 var me = User.create({ id: 'userToRemove' });
 users.add(me);
 
 users.remove(me).remove(agon);
+
 users.each(function(user, i) {
     console.log(i + ': ' + user.get('id'));
 });

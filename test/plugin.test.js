@@ -72,10 +72,10 @@ describe('store-collection plugin', function () {
             }).to.throw(/This item is already in the collection/);
         });
 
-        it('should emit an "add" event', function () {
+        it('should emit an "added" event', function () {
             var itemAdded = sinon.spy();
 
-            collection.on('add', itemAdded);
+            collection.on('added', itemAdded);
             collection.add(newUser);
 
             expect(itemAdded).to.have.been.calledOnce;
