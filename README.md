@@ -56,6 +56,20 @@ users.each(function(user) {
 
 ```
 
+## API
+
+### instance.add(obj:Store)
+Add a new item to the collection. The item **must** be a Store instance.
+```
+users.add(User.create({ id: 'someUsername' }));
+```
+Emits an 'add' event.
+```
+users.on('add', function(user) {
+    user.get('id'); // 'someUsername'
+});
+```
+
 ## TODO:
 - Add full documentation about what is all available
 
