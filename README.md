@@ -51,7 +51,7 @@ var users = Users.create([
 ]); // Here User is a Model
 
 users.each(function(user) {
-    console.log(user.get('id');
+    console.log(user.get('id'));
 }); // 'agonbina', 'gonigkum'
 
 ```

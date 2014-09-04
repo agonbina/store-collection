@@ -1,8 +1,8 @@
 describe('store-collection plugin', function () {
 
     var rawCollection = new Store([
-        { name: 'myModel' },
-        { name: 'otherModel' }
+        new Store({ name: 'myModel' }),
+        new Store({ name: 'otherModel' })
     ]);
 
     it('should add a .length method to return the number of instances in a collection', function () {
@@ -30,9 +30,11 @@ describe('store-collection plugin', function () {
         function getNames() {
             return rawCollection.map(function (item) {
                 return item.get('name');
-            });
+            }).value(); // returns an Array
         }
 
+        expect((getNames()).length).to.equal(2);
+        expect(getNames()).to.include.members(['myModel', 'otherModel']);
     });
 
 });
