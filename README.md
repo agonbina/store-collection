@@ -70,6 +70,22 @@ users.on('add', function(user) {
 });
 ```
 
+### instance.remove(obj:Store|obj:Mixed)
+Remove an item from the collection.
+
+```obj``` can be a Store instance or a query filter. 
+```
+var me = User.create({ id: 'agonbina' });
+users.remove(me);
+
+OR 
+
+users.remove({ id: 'agonbina' }); // Remove all users with id: 'agonbina'
+```
+
+### instance.length()
+Returns the number of elements in the collection.
+
 ## TODO:
 - Add full documentation about what is all available
 
