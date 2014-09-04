@@ -77,6 +77,7 @@ Remove an item from the collection.
 ```
 var me = User.create({ id: 'agonbina' });
 users.remove(me);
+```
 
 ## instance.removeWhere(query:Mixed)
 Remove all items matching the query object.
